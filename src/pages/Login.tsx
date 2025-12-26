@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,9 +11,18 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    // Mock login - in production, this would authenticate
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/dashboard");
+    }, 1000);
     // Handle login logic here
     console.log("Login:", { email, password });
   };
